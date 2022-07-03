@@ -26,73 +26,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
+?>
 
-// ==================
-// = Plugin Version =
-// ==================
-define( 'AI1WMUE_VERSION', '2.46' );
-
-// ===============
-// = Plugin Name =
-// ===============
-define( 'AI1WMUE_PLUGIN_NAME', 'all-in-one-wp-migration-unlimited-extension' );
-
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WMUE_LIB_PATH', AI1WMUE_PATH . DIRECTORY_SEPARATOR . 'lib' );
-
-// ===================
-// = Controller Path =
-// ===================
-define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'controller' );
-
-// ==============
-// = Model Path =
-// ==============
-define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
-
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
-
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
-
-// =============
-// = View Path =
-// =============
-define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view' );
-
-// ===============
-// = Vendor Path =
-// ===============
-define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
-
-// ==================
-// = Retention Path =
-// ==================
-define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
-
-// ===========================
-// = ServMask Activation URL =
-// ===========================
-define( 'AI1WMUE_ACTIVATION_URL', 'https://servmask.com/purchase/activations' );
-
-// ======================
-// = ServMask Stats URL =
-// ======================
-define( 'AI1WMUE_STATS_URL', 'https://servmask.com/api/stats' );
-
-// =================
-// = Max File Size =
-// =================
-define( 'AI1WMUE_MAX_FILE_SIZE', 0 );
-
-// ===============
-// = Purchase ID =
-// ===============
-define( 'AI1WMUE_PURCHASE_ID', '' );
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TZZJZCS');</script>
+<!-- End Google Tag Manager -->

@@ -26,73 +26,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
+?>
 
-// ==================
-// = Plugin Version =
-// ==================
-define( 'AI1WMUE_VERSION', '2.46' );
-
-// ===============
-// = Plugin Name =
-// ===============
-define( 'AI1WMUE_PLUGIN_NAME', 'all-in-one-wp-migration-unlimited-extension' );
-
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WMUE_LIB_PATH', AI1WMUE_PATH . DIRECTORY_SEPARATOR . 'lib' );
-
-// ===================
-// = Controller Path =
-// ===================
-define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'controller' );
-
-// ==============
-// = Model Path =
-// ==============
-define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
-
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
-
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
-
-// =============
-// = View Path =
-// =============
-define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view' );
-
-// ===============
-// = Vendor Path =
-// ===============
-define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
-
-// ==================
-// = Retention Path =
-// ==================
-define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
-
-// ===========================
-// = ServMask Activation URL =
-// ===========================
-define( 'AI1WMUE_ACTIVATION_URL', 'https://servmask.com/purchase/activations' );
-
-// ======================
-// = ServMask Stats URL =
-// ======================
-define( 'AI1WMUE_STATS_URL', 'https://servmask.com/api/stats' );
-
-// =================
-// = Max File Size =
-// =================
-define( 'AI1WMUE_MAX_FILE_SIZE', 0 );
-
-// ===============
-// = Purchase ID =
-// ===============
-define( 'AI1WMUE_PURCHASE_ID', '' );
+<div class="ai1wm-mt-20">
+	<!-- TrustBox script -->
+	<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+	<!-- End TrustBox script -->
+	<!-- TrustBox widget - Micro Star -->
+	<div class="trustpilot-widget" data-locale="<?php echo esc_attr( get_user_locale() ); ?>" data-template-id="5419b732fbfb950b10de65e5" data-businessunit-id="5ea734eba36b600001b4f19c" data-style-height="24px" data-style-width="100%" data-theme="light">
+		<a href="https://www.trustpilot.com/review/www.servmask.com" target="_blank" rel="noopener">Trustpilot</a>
+	</div>
+	<!-- End TrustBox widget -->
+</div>

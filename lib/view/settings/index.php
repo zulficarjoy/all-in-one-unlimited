@@ -74,6 +74,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</label>
 								<?php _e( 'days. <small>Default: <strong>0</strong> off</small>', AI1WMUE_PLUGIN_NAME ); ?>
 							</div>
+
+							<div class="ai1wm-field" id="ai1wmue-backups-path">
+								<folder-browser destination="<?php echo $destination; ?>" dir-separator="<?php echo DIRECTORY_SEPARATOR; ?>">
+									<h3><?php _e( 'Backups directory', AI1WMUE_PLUGIN_NAME ); ?></h3>
+								</folder-browser>
+							</div>
 						</p>
 					</article>
 					<p>
@@ -95,6 +101,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<h2><?php _e( 'Leave Feedback', AI1WMUE_PLUGIN_NAME ); ?></h2>
 
 					<?php include AI1WM_TEMPLATES_PATH . '/common/leave-feedback.php'; ?>
+
+					<?php include AI1WMUE_TEMPLATES_PATH . '/common/trust-pilot.php'; ?>
 				</div>
 			</div>
 		</div>

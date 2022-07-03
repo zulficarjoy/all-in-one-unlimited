@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2022 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,42 +27,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-class Ai1wmue_Settings {
+class Ai1wmue_Stats_Controller {
 
-	public function set_backups( $number ) {
-		return update_option( 'ai1wmue_backups', $number );
+	public static function export( $params ) {
+		if ( isset( $params['ai1wm_manual_export'] ) ) {
+			self::send( 'export' );
+		}
 	}
 
-	public function get_backups() {
-		return get_option( 'ai1wmue_backups', false );
+	public static function import( $params ) {
+		if ( isset( $params['ai1wm_manual_restore'] ) ) {
+			self::send( 'restore' );
+		}
+
+		if ( isset( $params['ai1wm_manual_import'] ) ) {
+			self::send( 'import' );
+		}
 	}
 
-	public function set_total( $size ) {
-		return update_option( 'ai1wmue_total', $size );
-	}
+	protected static function send( $action ) {
+		if ( constant( 'AI1WMUE_PURCHASE_ID' ) ) {
+			global $wpdb;
 
-	public function get_total() {
-		return get_option( 'ai1wmue_total', false );
-	}
+			$url = implode(
+				'/',
+				array(
+					AI1WMUE_STATS_URL,
+					AI1WMUE_PURCHASE_ID,
+					$action,
+				)
+			);
 
-	public function set_days( $days ) {
-		return update_option( 'ai1wmue_days', $days );
+			wp_remote_post(
+				$url,
+				array(
+					'timeout' => 5,
+					'body'    => array(
+						'url'           => get_site_url(),
+						'email'         => get_option( 'admin_email' ),
+						'wp_version'    => get_bloginfo( 'version' ),
+						'php_version'   => PHP_VERSION,
+						'mysql_version' => $wpdb->db_version(),
+					),
+				)
+			);
+		}
 	}
-
-	public function get_days() {
-		return get_option( 'ai1wmue_days', false );
-	}
-
-	public function get_backups_path() {
-		return get_option( AI1WM_BACKUPS_PATH_OPTION, AI1WM_DEFAULT_BACKUPS_PATH );
-	}
-
-	public function set_backups_path( $path ) {
-		return update_option( AI1WM_BACKUPS_PATH_OPTION, $path );
-	}
-
-	public function reset_backups_path() {
-		return delete_option( AI1WM_BACKUPS_PATH_OPTION );
-	}
-
 }

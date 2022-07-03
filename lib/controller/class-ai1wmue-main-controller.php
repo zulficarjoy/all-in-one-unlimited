@@ -181,6 +181,17 @@ class Ai1wmue_Main_Controller {
 
 			// Settings
 			add_action( 'admin_post_ai1wmue_settings', 'Ai1wmue_Settings_Controller::settings' );
+
+			// TrustPilot widget
+			if ( ! has_action( 'ai1wm_sidebar_right_end' ) ) {
+				add_action( 'ai1wm_sidebar_right_end', array( $this, 'trust_pilot' ) );
+			}
+
+			// Register stats collect actions if URL is defined
+			if ( defined( 'AI1WMUE_STATS_URL' ) ) {
+				add_action( 'ai1wm_status_export_done', 'Ai1wmue_Stats_Controller::export' );
+				add_action( 'ai1wm_status_import_done', 'Ai1wmue_Stats_Controller::import' );
+			}
 		}
 	}
 
@@ -267,6 +278,8 @@ class Ai1wmue_Main_Controller {
 				),
 			)
 		);
+
+		add_action( 'admin_print_scripts', array( $this, 'google_tag_manager' ) );
 	}
 
 	/**
@@ -285,6 +298,8 @@ class Ai1wmue_Main_Controller {
 			Ai1wm_Template::asset_link( 'javascript/restore.min.js', 'AI1WMUE' ),
 			array( 'jquery' )
 		);
+
+		add_action( 'admin_print_scripts', array( $this, 'google_tag_manager' ) );
 	}
 
 	/**
@@ -351,6 +366,8 @@ class Ai1wmue_Main_Controller {
 				),
 			)
 		);
+
+		add_action( 'admin_print_scripts', array( $this, 'google_tag_manager' ) );
 	}
 
 	/**
@@ -397,14 +414,33 @@ class Ai1wmue_Main_Controller {
 
 		wp_localize_script(
 			'ai1wmue_settings',
-			'ai1wm_report',
+			'ai1wmue_folder_browser',
 			array(
 				'ajax'       => array(
-					'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=ai1wm_report' ) ),
+					'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=ai1wmue_folder_browser' ) ),
 				),
 				'secret_key' => get_option( AI1WM_SECRET_KEY ),
 			)
 		);
+
+		wp_localize_script(
+			'ai1wmue_settings',
+			'ai1wmue_locale',
+			array(
+				'folder_browser_change' => __( 'Change', AI1WMUE_PLUGIN_NAME ),
+				'title_name'            => __( 'Name', AI1WMUE_PLUGIN_NAME ),
+				'title_date'            => __( 'Date', AI1WMUE_PLUGIN_NAME ),
+				'empty_list_message'    => __( 'No folders to list. Click on the navbar to go back.', AI1WMUE_PLUGIN_NAME ),
+				'legend_select_info'    => __( 'Select with a click', AI1WMUE_PLUGIN_NAME ),
+				'legend_open_info'      => __( 'Open with two clicks', AI1WMUE_PLUGIN_NAME ),
+				'button_close'          => __( 'Close', AI1WMUE_PLUGIN_NAME ),
+				'button_select'         => __( 'Select folder &gt;', AI1WMUE_PLUGIN_NAME ),
+				'show_more'             => __( 'more', AI1WMUE_PLUGIN_NAME ),
+				'show_less'             => __( 'less', AI1WMUE_PLUGIN_NAME ),
+			)
+		);
+
+		add_action( 'admin_print_scripts', array( $this, 'google_tag_manager' ) );
 	}
 
 	/**
@@ -415,6 +451,7 @@ class Ai1wmue_Main_Controller {
 	public function router() {
 		if ( current_user_can( 'export' ) ) {
 			add_action( 'wp_ajax_ai1wmue_file_list', 'Ai1wmue_Export_Controller::list_files' );
+			add_action( 'wp_ajax_ai1wmue_folder_browser', 'Ai1wmue_Settings_Controller::list_folders' );
 		}
 	}
 
@@ -426,6 +463,7 @@ class Ai1wmue_Main_Controller {
 	public function plugin_row_meta( $links, $file ) {
 		if ( $file === AI1WMUE_PLUGIN_BASENAME ) {
 			$links[] = __( '<a href="https://help.servmask.com/knowledgebase/unlimited-extension-user-guide/" target="_blank">User Guide</a>', AI1WMUE_PLUGIN_NAME );
+			$links[] = __( '<a href="https://servmask.com/contact-support" target="_blank">Contact Support</a>', AI1WMUE_PLUGIN_NAME );
 		}
 
 		return $links;
@@ -449,5 +487,21 @@ class Ai1wmue_Main_Controller {
 		if ( AI1WMUE_PURCHASE_ID ) {
 			update_option( 'ai1wmue_plugin_key', AI1WMUE_PURCHASE_ID );
 		}
+	}
+
+	public function trust_pilot() {
+		Ai1wm_Template::render(
+			'common/trust-pilot',
+			array(),
+			AI1WMUE_TEMPLATES_PATH
+		);
+	}
+
+	public function google_tag_manager() {
+		Ai1wm_Template::render(
+			'common/google-tag-manager',
+			array(),
+			AI1WMUE_TEMPLATES_PATH
+		);
 	}
 }
